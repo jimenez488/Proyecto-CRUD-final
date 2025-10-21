@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="ens>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion de Equipos de Computo</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles-new.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <header class="titulo1">
+        <div class="inicio">
+            <h1>Sistema de registro de Equipos de Computo</h1>
+            <p>Gestion y Mantenimiento de equipos</p>
+        </div>
+    </header>
+
+    <!--boton inicial-->
+
+    <main class="boton1">
+        <div>
+            <!--panel de control-->
+            <section class="panel-control">
+                <div>
+                    <h2><i class="fas fa-plus-square"></i> Registrar Nuevo Equipo</h2>
+                    <button><i class="fas fa-eye-slash"></i> Ocultar Formulario</button>
+                </div>
+            </section>
+        </div>
+
+        <!--seccion formulario-->
+        <div class="seccion-formulario">
+            <form class="registro">
+                <div class="grupo-formulario">
+                    <label for="idequipo"><i class="fas fa-hashtag"></i> ID del equipo</label>
+                    <input type="text" id="idequipo" name="IDequipo" required placeholder="Ej: PC-001">
+                </div>
+
+                <div class="grupo-formulario">
+                    <label for="tipoequipo"><i class="fas fa-desktop"></i> Tipo de Equipo</label>
+                    <select name="tipo" id="equipo" required="">
+                        <option value="">Seleccionar Tipo</option>
+                         <option value="desktop"><i class="fas fa-desktop"></i> Computadora de Escritorio</option>
+                          <option value="laptop"><i class="fas fa-laptop"></i> Laptop</option>
+                           <option value="servidor"><i class="fas fa-server"></i> Servidor</option>
+                            <option value="impresora"><i class="fas fa-print"></i> Impresora</option>
+                             <option value="monitor"><i class="fas fa-tv"></i> Monitor</option>
+                              <option value="router"><i class="fas fa-wifi"></i> Router</option>
+                               <option value="switch"><i class="fas fa-network-wired"></i> Switch</option>
+                                <option value="otro"><i class="fas fa-question-circle"></i> Otro</option>
+                    </select>
+                </div>
+
+                <div class="grupo-formulario">
+                    <label for="brand"><i class="fas fa-building"></i> Marca</label>
+                    <input type="text" id="brand" name="brand" required placeholder="Ej: Dell, HP, Lenovo">
+                </div>
+
+                <div class="grupo-formulario">
+                    <label for="Modelo"><i class="fas fa-tag"></i> Modelo</label>
+                    <input type="text" id="model" name="model" required placeholder="Ej: 15FC0069-lA">
+                </div>
+
+                <div class="grupo-formulario">
+                    <label for="SerialNumber"><i class="fas fa-barcode"></i> Numero de Serie</label>
+                    <input type="text" id="serialnumber" name="serialnumber" required placeholder="Ej: ABC1723445 ">
+                </div>
+
+                <div class="grupo-formulario">
+                    <label for="status"><i class="fas fa-circle-check"></i> Estado</label>
+                    <select id="status" name="status" required>
+                         <option value="">Seleccionar Estado</option>
+                          <option value="operativo">✅ Operativo</option>
+                           <option value="en mantenimiento">🔧 En Mantenimiento</option>
+                            <option value="Fuera de Servicio">❌ Fuera de Servicio</option>
+                             <option value="Retirado">🗑️ Retirado</option>
+                    </select>
+                </div>
+
+                <div class="grupo-formulario">
+                    <label for="calendario"><i class="fas fa-calendar"></i> Fecha de Compra</label>
+                    <input type="date" id="calendario" name="calendario">
+                </div>
+
+                <div class="grupo-formulario">
+                    <label for="garantia "><i class="fas fa-shield-alt"></i> Garantia (meses)</label>
+                    <input type="number" id="garantia" name="garantia" min="0" max="120" placeholder="Ej: 36">
+                </div>
+
+                <div class="notas.adicioanel">
+                    <label for="notas"><i class="fas fa-sticky-note"></i> Observaciones</label>
+                    <textarea id="notes" name="notes" placeholder="Notas Adicionales Sobre el Equipo..." rows="3"></textarea>
+                </div>
+
+                <div class="acciones-formulario">
+                    <button type="submit"><i class="fas fa-plus-circle"></i> Registrar Equipo</button>
+                    <button type="reset"><i class="fas fa-eraser"></i> Limpiar Formulario</button>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <!--buscar y filtrar equipos-->
+
+    <section class="seccion-buscar">
+        <div class="buscar.filtro">
+            <h2><i class="fas fa-search"></i> Buscar y Filtrar Equipos</h2>
+        </div>
+
+        <div class="control.buscar">
+            <div class="gurpo-buscar">
+                <input type="text" id="searchInput" placeholder="Buscar por ID, Marca, Modelo o numero de serie...">
+                <button id="clearsearch"></button>
+            </div>
+
+            <div class="fitros-grupo">
+                <select id="tipofiltro">
+                    <option value="">Todos los Tipos</option>
+                     <option value="desktop">Desktop</option>
+                      <option value="laptop">Laptop</option>
+                       <option value="servidor">Servidor</option>
+                        <option value="impresora">Impresora</option>
+                         <option value="monitor">Monitor</option>
+                          <option value="router">Router</option>
+                           <option value="switch">Switch</option>
+                            <option value="otro">Otro</option>
+                </select>
+
+                <select id="fitro-estado">
+                     <option value="">Todos los Estados</option>
+                      <option value="operaritvo">Operativo</option>
+                       <option value="en mantenimiento">En Mantenimiento</option>
+                        <option value="fuera de servicio">Fuera de Servicio</option>
+                         <option value="en reparacion">En Reparacion</option>
+                          <option value="Retirado">Retirado</option>
+                </select>
+            </div>
+
+            <div class="acciones-grupo">
+                <button id="clearfilter"><i class="fas fa-filter"></i> Limpiar Filtros</button>
+            </div>
+        </div>
+    </section>
+
+    <!--grupo de estadisticas-->
+
+    <section class="seccion-estadisticas">
+        <div class="cuadricula-estadisticas">
+            <div class="tarjeta-estadisticas">
+                <div class="icono-estadisticas">
+                    <i class="fas fa-computer"></i>
+                </div>
+                <div class="stat_info">
+                    <span class="stat-numer" id="totalEquipment">0</span>
+                    <span class="stat-label">Total de Equipos</span>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon operational">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <div class="stat-info">
+                    <span class="stat-number" id="operationalEquipment">0</span>
+                    <span class="stat-label">Operativos</span>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon maintenance">
+                    <i class="fas fa-tools"></i>
+                </div>
+                <div class="stat-info">
+                    <span class="stat-number" id="maintenanceEquipment">0</span>
+                    <span class="stat-label">En Mantenimiento</span>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon out-of-service">
+                    <i class="fas fa-times-circle"></i>
+                </div>
+                <div class="stat-info">
+                    <span class="stat-number" id="outOfServiceEquipment">0</span>
+                    <span class="stat-label">Fuera de Servicio</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+        <!--equipment list section-->
+
+        <section class="equipment-list-section">
+            <div class="list-header">
+                <h2><i class="fas fa-list"></i> Lista de Equipos Registrados</h2>
+                <div class="list-info">
+                    <span id="equipmentCount">0 Equipos Encontrados </span>
+                </div>
+            </div>
+
+            <div class="table-container">
+                <table id="equipmentTable" class="equipment-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                             <th>Tipo</th>
+                              <th>Marca</th>
+                               <th>Modelo</th>
+                                <th>Estado</th>
+                                 <th>Fecha de Compra</th>
+                                  <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="equipmenttablebody">
+                        <tr class="no-data">
+                            <td colspan="7">
+                                <div class="no.data-message">
+                                    <p>No Hay Equipos Registrados</p>
+                                    <small>Utiliza el formulario de arriba para registrar tu primer equipo </small>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!--editor modal-->
+        <div id="editModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Editar Equipos</h3>
+                    <button class="modal-close">&times;</button>
+                </div>
+                <form id="editequipmentform">
+                    <input type="hidden" id="editindex" name="editindex">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="editequipmentid"><i class="fas fa-hashtag"></i> ID del Equipo</label>
+                            <input type="text" id="editequipmentid" name="equipmentid" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="editequipmenttype"><i class="fas fa-desktop"></i> Tipo de Equipo</label>
+                            <select id="editequipmenttype" name="equipmenttype" required>
+                                <option value="desktop">🖥️ Desktop</option>
+                                 <option value="laptop">💻 Laptop</option>
+                                  <option value="servidor">🖥️ Servidor</option>
+                                   <option value="impresora">🖨️ Impresora</option>
+                                    <option value="monitor">📺 Monitor</option>
+                                     <option value="router">📡 Router</option>
+                                      <option value="switch">🔌 Switch</option>
+                                       <option value="otro">❓ Otro</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="editBrand"><i class="fas fa-building"></i> Marca</label>
+                            <input type="text" id="editBrand" name="brand" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="editModel"><i class="fas fa-tag"></i> Modelo</label>
+                            <input type="text" id="editModel" name="model" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="editSerialNumber"><i class="fas fa-barcode"></i> Número de Serie</label>
+                            <input type="text" id="editSerialNumber" name="serialNumber" required>
+                        </div>
+
+                        <div class="form-group">
+                           <label for="editStatus"><i class="fas fa-circle-check"></i> Estado</label>
+                             <select id="editStatus" name="status" required>
+                               <option value="operativo">✅ Operativo</option>
+                                <option value="en mantenimiento">🔧 En Mantenimiento</option>
+                                 <option value="fuera de servicio">❌ Fuera de Servicio</option>
+                                  <option value="en reparación">⚙️ En Reparación</option>
+                                   <option value="retirado">🗑️ Retirado</option>
+                             </select>
+                        </div>
+
+                        <div class="form-group">
+                         <label for="editPurchaseDate"><i class="fas fa-calendar"></i> Fecha de Compra</label>
+                          <input type="date" id="editPurchaseDate" name="purchaseDate" required>
+                        </div>
+
+                        <div class="form-group">
+                           <label for="editWarranty"><i class="fas fa-shield-alt"></i> Garantía (meses)</label>
+                            <input type="number" id="editWarranty" name="warranty" min="0" max="120">
+                        </div>
+
+                        <div class="form-group form-group-full">
+                           <label for="editNotes"><i class="fas fa-sticky-note"></i> Observaciones</label>
+                            <textarea id="editNotes" name="notes" rows="3"></textarea>
+                        </div>
+                    </div>
+                    
+                    <div class="modal-actions">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-save"></i> Guardar Cambios
+                        </button>
+                        <button type="button" class="btn btn-secondary modal-close">
+                            <i class="fas fa-times"></i> Cancelar
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!--modo confirmacion eliminar -->
+        <div id="deleteModal" class="modal">
+        <div class="modal-content modal-small">
+            <div class="modal-header">
+                <h3><i class="fas fa-trash-alt"></i> Confirmar Eliminación</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>¿Estás seguro de que deseas eliminar este equipo?</p>
+                <div class="equipment-info" id="deleteEquipmentInfo">
+                    <!-- Equipment info will be populated by JavaScript -->
+                </div>
+                <p class="warning"><i class="fas fa-exclamation-triangle"></i> Esta acción no se puede deshacer.</p>
+            </div>
+            <div class="modal-actions">
+                <button id="confirmDelete" class="btn btn-danger">
+                    <i class="fas fa-trash"></i> Eliminar
+                </button>
+                <button class="btn btn-secondary modal-close">
+                    <i class="fas fa-times"></i> Cancelar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div id="toastContainer" class="toast-container"></div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Sistema de Equipos de Computo. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    
+
+
+
+</body>
+</html>
